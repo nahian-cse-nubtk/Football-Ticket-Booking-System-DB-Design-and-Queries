@@ -26,3 +26,24 @@ CREATE TABLE Matches (
     CONSTRAINT chk_match_status
         CHECK (match_status IN ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
 );
+
+-- create bookings table
+CREATE TABLE Bookings (
+    booking_id SERIAL,
+    user_id INT,
+    match_id INT,
+    seat_number VARCHAR(20),
+    payment_status VARCHAR(20),
+    total_cost NUMERIC(10,2),
+    CONSTRAINT pk_bookings PRIMARY KEY (booking_id),
+    CONSTRAINT fk_bookings_user
+        FOREIGN KEY (user_id) REFERENCES Users(user_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_bookings_match
+        FOREIGN KEY (match_id) REFERENCES Matches(match_id)
+        ON DELETE CASCADE,
+    CONSTRAINT chk_total_cost
+        CHECK (total_cost >= 0),
+    CONSTRAINT chk_payment_status
+        CHECK (payment_status IN ('Pending', 'Confirmed', 'Cancelled', 'Refunded'))
+);
