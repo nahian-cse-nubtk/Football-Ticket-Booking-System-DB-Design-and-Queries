@@ -130,3 +130,18 @@ SELECT
 FROM
     users u
     LEFT JOIN bookings b ON b.user_id = u.user_id
+
+-- Query 6: Find all ticket bookings where the total cost is strictly higher than the average cost of all ticket bookings.
+SELECT
+    booking_id,
+    match_id,
+    round(total_cost)
+FROM
+    bookings
+WHERE
+    total_cost > (
+        SELECT
+            avg(total_cost)
+        FROM
+            bookings
+    );
