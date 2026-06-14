@@ -65,7 +65,6 @@ Your ERD must clearly show:
 
 
 - **[Lucidchart](https://www.lucidchart.com)** or **[Draw.io](https://app.diagrams.net)** ERD Tool
-- Submit a public, shareable ERD link (ensure permissions are set to "Anyone with the link can view").
 
 ## Schema & Sample Data 
 
